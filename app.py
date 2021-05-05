@@ -3,19 +3,10 @@ import os
 import pickle
 import joblib
 
-print("Test")
-print("Test 2")
 print(os.getcwd())
 path = os.getcwd()
 
-rf_model = joblib.load('Models/RandomForestModel.pkl')
-
-
-# with open('Models/RF_model.pkl', 'rb') as f:
-#     randomforest = pickle.load(f)
-#
-# with open('Models/svm_clf_model.pkl', 'rb') as f:
-#     svm_model = pickle.load(f)
+rf_model = joblib.load('Models/BestModel.pkl')
 
 
 def get_predictions(age, sex, chest_pain, resting_bp, chol, fbs, restecg, max_hr, exang, oldpeak,
@@ -53,15 +44,14 @@ def my_form_post():
         ca = request.form['ca']
         thal = request.form['thal']
 
-        prediction = get_predictions(age, sex, chest_pain, resting_bp, chol, fbs, restecg, max_hr, exang, oldpeak,
-                                     slope, ca, thal)
+        prediction = get_predictions(age, sex, chest_pain, resting_bp, chol, fbs, restecg, max_hr, exang, oldpeak, slope, ca, thal)
 
         if prediction == 1:
-            pred_msg = 'Customer is likely to have a heart disease.'
+            display_message = 'User is likely to have a heart disease.'
         else:
-            pred_msg = 'Customer is unlikely to have a heart disease.'
+            display_message = 'User is unlikely to have a heart disease.'
 
-        return render_template('home.html', msg=pred_msg)
+        return render_template('home.html', msg=display_message)
     else:
         return render_template('home.html')
 
