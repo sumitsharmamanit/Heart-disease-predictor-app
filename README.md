@@ -1,5 +1,3 @@
-# CE888 Lab 10 code
-
-ss20086@essex.ac.uk
+# Heart disease predictor
 
 https://ss20086-lab10.herokuapp.com/
